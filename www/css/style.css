@@ -15,5 +15,16 @@ ionic-nav-bar {
 }
 }
 
+.name {
+  color: #28a54c;
+  text-decoration: none;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+.email {
+  color: black;
+}
+
 
 

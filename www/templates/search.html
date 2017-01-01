@@ -1,4 +1,16 @@
-<ion-view view-title="Teacher ORD">
+<ion-view view-title="Search Teachers">
   <ion-content>
+<div>
+  <div ng-repeat = "item in data track by $index">
+    <div class="card" ng-click="openURL(item.PersonalWebsite)">
+      <div class="item item-text-wrap">
+        <a class="name">{{item.FirstName}} {{item.LastName}}</a><br>
+        <div class="emailTxt">
+          Email:&nbsp;&nbsp;&nbsp;&nbsp;<a class="email" href="mailto:{{item.Email}}">{{item.Email}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   </ion-content>
 </ion-view>
