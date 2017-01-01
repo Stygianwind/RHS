@@ -82,9 +82,10 @@ $scope.$on('init', function(evt, data) {
   });
 })
 
-  .controller('DirectoryCtrl', function($scope, $http, $cordovaInAppBrowser, $rootScope) {
+  .controller('DirectoryCtrl', function($scope, $http, $cordovaInAppBrowser, $rootScope, $ionicLoading) {
 
-    $scope.data = "Loading...";
+    //$scope.data = "Loading...";
+    $ionicLoading.show();
     $http({
         method: 'POST',
         url: "http://ridgehigh.bernardsboe.com/Common/controls/StaffDirectory/ws/StaffDirectoryWS.asmx/GetUsersProfile",
@@ -116,6 +117,7 @@ $scope.$on('init', function(evt, data) {
         i.FullName = i.FirstName + " " + i.LastName;
       }
       $scope.$emit("init", $scope.data);
+      $ionicLoading.hide();
     })
 
 
