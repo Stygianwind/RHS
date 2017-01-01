@@ -26,5 +26,10 @@ ionic-nav-bar {
   color: black;
 }
 
-
+.link{
+  color: #28a54c;
+  text-decoration: none;
+  font-size: 15pt;
+  font-weight: bold;
+}
 
