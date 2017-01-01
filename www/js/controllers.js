@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $location, $cordovaInAppBrowser) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $location, $cordovaInAppBrowser, $ionicFilterBar) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -32,6 +32,19 @@ angular.module('starter.controllers', [])
           console.debug(event+"ERORORIOURIOR");
         });
     };
+$scope.$on('init', function(evt, data) {
+  $scope.data = data;
+});
+  $scope.showFilterBar = function () {
+    var filterBarInstance = $ionicFilterBar.show({
+      items: $scope.data,
+      update: function (filteredItems) {
+        $scope.data = filteredItems;
+        $scope.$broadcast("updateData", filteredItems);
+      },
+      filterProperties: 'FullName'
+    });
+  };
 
 
 
@@ -69,7 +82,7 @@ angular.module('starter.controllers', [])
   });
 })
 
-  .controller('DirectoryCtrl', function($scope, $http, $ionicFilterBar, $cordovaInAppBrowser) {
+  .controller('DirectoryCtrl', function($scope, $http, $cordovaInAppBrowser, $rootScope) {
 
     $scope.data = "Loading...";
     $http({
@@ -97,17 +110,19 @@ angular.module('starter.controllers', [])
           .d.Result.StaffProfileList;
 
         //$scope.data = "An error has occurred or there are no announcements today";
-      });
+      }).then(function() {
+      for (n in $scope.data) {
+        var i = $scope.data[n];
+        i.FullName = i.FirstName + " " + i.LastName;
+      }
+      $scope.$emit("init", $scope.data);
+    })
 
-    $scope.showFilterBar = function () {
-      var filterBarInstance = $ionicFilterBar.show({
-        items: $scope.data,
-        update: function (filteredItems) {
-          $scope.data = filteredItems;
-        },
-        filterProperties: 'description'
-      });
-    };
+
+    $scope.$on("updateData", function(evt, data) {
+      $scope.data = data;
+    });
+
 
     $scope.openURL =
       function(url) {
