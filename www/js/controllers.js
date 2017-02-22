@@ -83,29 +83,8 @@ $scope.$on('init', function(evt, data) {
 
     })
 
-  .controller('PlaylistsCtrl', function($scope, $cordovaInAppBrowser) {
-    $scope.openURL =
-      function(url) {
-        var options = {
-          location: 'yes',
-          clearcache: 'yes',
-          toolbar: 'yes'
-        };
+  .controller('PlaylistsCtrl', function($scope) {
 
-
-
-        $cordovaInAppBrowser.open(url, '_blank', options)
-
-          .then(function(event) {
-            // success
-            console.debug(event);
-          })
-
-          .catch(function(event) {
-            // error
-            console.debug(event+"ERORORIOURIOR");
-          });
-      };
   })
 
 .controller('BrowseCtrl', function($scope, $http, $ionicLoading ) {
