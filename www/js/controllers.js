@@ -32,6 +32,30 @@ angular.module('starter.controllers', [])
           console.debug(event+"ERORORIOURIOR");
         });
     };
+
+  $scope.openHomeworkPortal =
+    function() {
+      var ball = {
+        location: 'yes',
+        clearcache: 'yes',
+        toolbar: 'yes'
+      };
+
+
+
+      $cordovaInAppBrowser.open('https://app.oncoursesystems.com/homeworkportal/login/bernardsboe', '_blank', ball)
+
+        .then(function(event) {
+          // success
+          console.debug(event);
+        })
+
+        .catch(function(event) {
+          // error
+          console.debug(event+"ERORORIOURIOR");
+        });
+    };
+
 $scope.$on('init', function(evt, data) {
   $scope.data = data;
 });
@@ -53,19 +77,19 @@ $scope.$on('init', function(evt, data) {
 })
 
 .controller('LoginCtrl', function($scope, $cordovaInAppBrowser, $ionicPlatform) {
- // $ionicPlatform.ready(function() {
 
+  })
+  .controller('HomeworkPortalCtrl', function($scope, $cordovaInAppBrowser, $ionicPlatform) {
 
-  }
-  //)}
-)
+    })
 
   .controller('PlaylistsCtrl', function($scope) {
 
   })
 
-.controller('BrowseCtrl', function($scope, $http ) {
-  $scope.data = "Loading...";
+.controller('BrowseCtrl', function($scope, $http, $ionicLoading ) {
+  $scope.data = "";
+  $ionicLoading.show();
   $http.get("http://bernardsboe-ridgehigh.ss5.sharpschool.com/cms/One.aspx?portalId=3097189&pageId=5762386").then(function(response) {
         var myDiv = $("<div></div>").html(response.data);
         var content = myDiv.find("#news_content_body");
@@ -77,8 +101,10 @@ $scope.$on('init', function(evt, data) {
           content = content.text();
         }
         $scope.data = content;
+        $ionicLoading.hide();
   }, function() {
         $scope.data = "An error has occured or there are no announcements today";
+    $ionicLoading.hide();
   });
 })
 
@@ -118,13 +144,16 @@ $scope.$on('init', function(evt, data) {
       }
       $scope.$emit("init", $scope.data);
       $ionicLoading.hide();
-    })
+    });
 
 
     $scope.$on("updateData", function(evt, data) {
       $scope.data = data;
     });
 
+
+
+//    $scope.openPage1 =     $scope.openURL("google.com");
 
     $scope.openURL =
       function(url) {

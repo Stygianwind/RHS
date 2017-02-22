@@ -72,6 +72,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'jett.io
     }
   })
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+    .state('app.HomeworkPortal', {
+      url: '/HomeworkPortal',
+      cache: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/HomeworkPortal.html',
+          controller: 'HomeworkPortalCtrl'
+        }
+      }
+    });
+
+  $urlRouterProvider.otherwise('/app/playlists')
+
 });
