@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import {AspenPage} from '../pages/aspen/aspen';
 import {HwPage} from '../pages/hw/hw';
 import {LinksPage} from '../pages/links/links';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private iab: InAppBrowser) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -45,6 +46,18 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.title=='Aspen')
+      {
+        const aspenBrowser = this.iab.create('https://nj-bernards.myfollett.com/aspen/logon.do');
+      }
+    else if (page.title=='Homework Portal')
+      {
+        const hwBrowser = this.iab.create('https://app.oncoursesystems.com/homeworkportal/login/bernardsboe');
+      }
+    else
+      {
+        this.nav.setRoot(page.component);
+      }
+  
   }
 }
