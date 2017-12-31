@@ -13,6 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {HttpModule} from '@angular/http';
+import { DetailsPage } from '../pages/details/details';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {HttpModule} from '@angular/http';
     ListPage,
     AspenPage,
     HwPage,
-    LinksPage
+    LinksPage,
+    DetailsPage
 
   ],
   imports: [
@@ -36,7 +39,8 @@ import {HttpModule} from '@angular/http';
     ListPage,
     AspenPage,
     HwPage,
-    LinksPage
+    LinksPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,
