@@ -13,7 +13,9 @@ import { DetailsPage } from '../details/details';
 export class ListPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: any;
+  ogItems: any;
+  myInput: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -38,7 +40,7 @@ export class ListPage {
     })
     .map(r=>r.json())
     .subscribe(response =>{
-        this.items = response.d.Result.StaffProfileList.sort((a, b) => {
+       this.ogItems = this.items = response.d.Result.StaffProfileList.sort((a, b) => {
           var textA = a.LastName.toUpperCase();
           var textB = b.LastName.toUpperCase();
           return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -86,5 +88,14 @@ UserId
     this.navCtrl.push(DetailsPage, {
       item: item
     });
+  }
+  onInput(event){
+   let newItems= [];
+    for (let item of this.ogItems){
+      if (item["Name"].indexOf(this.myInput)!=-1){
+        newItems.push(item);
+      }
+    }
+    this.items= newItems;
   }
 }
