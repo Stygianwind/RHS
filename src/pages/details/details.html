@@ -14,8 +14,7 @@
 
 
 <ion-content padding>
-    <h1>{{item.LastName+", " + item.FirstName}}\n\n\n</h1>
-   <h2>{{item.Email}}\n\n\n</h2>
-
-    <h2>{{item.PersonalWebsite}}</h2>
+    <div id="Name">{{item.LastName+", " + item.FirstName}}</div>
+   <div id="Email">Email: <span (click)="mailto(item.Email)">{{item.Email}}</span></div>
+    <div *ngIf="websitethere" id="Website">Website: <span (click)="openWeb(item.PersonalWebsite)"> {{item.PersonalWebsite}}</span></div>
 </ion-content>

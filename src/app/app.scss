@@ -1,5 +1,18 @@
 // http://ionicframework.com/docs/theming/
-
+ion-navbar{
+    div.toolbar-background.toolbar-background-md {
+    background-color : green;
+    }
+}
+div.toolbar-background.toolbar-background-md{
+    background-color : green;
+}
+div.toolbar-title.toolbar-title-md{
+    color:white;
+}
+.bar-button-menutoggle-md ion-icon{
+    color: white
+}
 
 // App Global Sass
 // --------------------------------------------------

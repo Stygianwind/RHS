@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the DetailsPage page.
@@ -15,11 +16,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailsPage {
   item: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  websitethere: boolean;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
     this.item = navParams.get('item');
+    if (this.item.PersonalWebsite){
+      this.websitethere= true;
+    }
+    else this.websitethere=false;
+  
   }
-
+  openWeb(url){
+     this.iab.create(url);
+  }
+  mailto(email) {
+    window.open(`mailto:${email}`, '_system');
+ }
   ionViewDidLoad() {
+    
     console.log('ionViewDidLoad DetailsPage');
   }
 
